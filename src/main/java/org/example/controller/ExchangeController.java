@@ -4,7 +4,7 @@ package org.example.controller;
 import org.example.model.ConversionRecord;
 import org.example.model.ConversionRequest;
 import org.example.model.ConversionResponse;
-import org.example.model.ExchangeRateResponse;
+import org.example.model.ExchangeResponse;
 import org.example.service.ConversionHistoryService;
 import org.example.service.CurrencyConversionService;
 import org.example.service.ExchangeService;
@@ -32,10 +32,10 @@ public class ExchangeController {
         private ConversionHistoryService conversionHistoryService;
 
         @GetMapping("/exchange-rate")
-        public ResponseEntity<ExchangeRateResponse> getExchangeRate(
+        public ResponseEntity<ExchangeResponse> getExchangeRate(
                 @RequestParam String from,
                 @RequestParam String to) {
-            ExchangeRateResponse exchangeRate = exchangeRateService.getExchangeRate(from, to);
+            ExchangeResponse exchangeRate = exchangeService.getExchangeRate(from, to);
             return ResponseEntity.ok(exchangeRate);
         }
 
