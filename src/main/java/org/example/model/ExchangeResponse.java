@@ -3,12 +3,12 @@ package org.example.model;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-public class ExchangeRateResponse {
+public class ExchangeResponse {
     private String fromCurrency;
     private String toCurrency;
     private BigDecimal rate;
 
-    public ExchangeRateResponse(String fromCurrency, String toCurrency, BigDecimal rate) {
+    public ExchangeResponse(String fromCurrency, String toCurrency, BigDecimal rate) {
         this.fromCurrency = fromCurrency;
         this.toCurrency = toCurrency;
         this.rate = rate;
@@ -42,7 +42,7 @@ public class ExchangeRateResponse {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ExchangeRateResponse that = (ExchangeRateResponse) o;
+        ExchangeResponse that = (ExchangeResponse) o;
         return Objects.equals(fromCurrency, that.fromCurrency) && Objects.equals(toCurrency, that.toCurrency) && Objects.equals(rate, that.rate);
     }
 
