@@ -1,12 +1,24 @@
 package org.example.model;
 
 import java.math.BigDecimal;
+import java.util.Map;
 import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ExchangeResponse {
     private String fromCurrency;
     private String toCurrency;
     private BigDecimal rate;
+
+    @JsonProperty("rates")
+    private Map<String, BigDecimal> rates;
+
+
+    @JsonCreator
+    public ExchangeResponse(@JsonProperty("rate") BigDecimal rate) {
+        this.rate = rate;
+    }
 
     public ExchangeResponse(String fromCurrency, String toCurrency, BigDecimal rate) {
         this.fromCurrency = fromCurrency;
@@ -36,6 +48,14 @@ public class ExchangeResponse {
 
     public void setRate(BigDecimal rate) {
         this.rate = rate;
+    }
+
+    public Map<String, BigDecimal> getRates() {
+        return rates;
+    }
+
+    public void setRates(Map<String, BigDecimal> rates) {
+        this.rates = rates;
     }
 
     @Override
