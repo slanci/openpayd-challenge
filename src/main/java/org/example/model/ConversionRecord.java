@@ -16,15 +16,6 @@ public class ConversionRecord {
     private String toCurrency;
     private BigDecimal convertedAmount;
 
-    public ConversionRecord(String transactionId, LocalDate date, BigDecimal amount, String fromCurrency, String toCurrency, BigDecimal convertedAmount) {
-        this.transactionId = transactionId;
-        this.date = date;
-        this.amount = amount;
-        this.fromCurrency = fromCurrency;
-        this.toCurrency = toCurrency;
-        this.convertedAmount = convertedAmount;
-    }
-
     public String getTransactionId() {
         return transactionId;
     }
