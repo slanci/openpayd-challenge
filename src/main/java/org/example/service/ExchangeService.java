@@ -1,8 +1,10 @@
 package org.example.service;
 
+import org.example.exception.ExchangeNotFoundException;
 import org.example.model.ExchangeResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import java.util.logging.Logger;
 
@@ -29,11 +31,17 @@ public class ExchangeService {
         logger.info("URL: " + url);
         ExchangeResponse response = restTemplate.getForObject(url, ExchangeResponse.class);
         logger.info("API Response: " + response);
-        if (response != null) {
-            response.setFromCurrency(from);
-            response.setToCurrency(to);
-            response.setRate(response.getRates().get(to));
+        try {
+            if (response != null) {
+                response.setFromCurrency(from);
+                response.setToCurrency(to);
+                response.setRate(response.getRates().get(to));
+                return response;
+            } else {
+                throw new ExchangeNotFoundException("Exchange rate not found for " + from + " to " + to);
+            }
+        } catch (RestClientException e) {
+            throw new ExchangeNotFoundException("Failed to fetch exchange rate for " + from + " to " + to);
         }
-        return response;
     }
 }
