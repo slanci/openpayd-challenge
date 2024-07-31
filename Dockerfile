@@ -5,7 +5,7 @@ FROM openjdk:11-jdk-slim
 WORKDIR /app
 
 # Add the application's jar to the container
-COPY target/openpayd-challenge-0.0.1-SNAPSHOT.jar app.jar
+COPY target/example-0.0.1-SNAPSHOT.jar app.jar
 
 # Expose the port the application runs on
 EXPOSE 8080
